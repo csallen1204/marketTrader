@@ -1,5 +1,22 @@
 #!/usr/bin/python3
 
+## User Story #1: Give Status 
+## User Story #2: Give Settings
+## User Story #3: Give Data
+## Quality Attribute #1: Accountability
+## Quality Attribute #2: Modularity
+## Quality Attribute #3: Autonomy
+## IH: TODOs
+## IH#1 (DONE)
+## IH#2 ability to assess whether a feature might require excessive time and effort so that 
+## Abi and Pat can avoid it or proceed with caution, and so Tim understands the relative 
+## amount of risk a feature comes with
+## IH#3 Include Help Feature on each option
+## IH#4 Keep Familiar Features Available
+## IH#5 Make Undo/Redo and Backtracking Available
+## IH#6 Provide an Explicit Path through the Task
+## IH#7 Provide Ways to Try Out Different Approaches
+## IH#8 Encourage Tinkerers to Tinker Mindfully
 
 def getStatus():
 
