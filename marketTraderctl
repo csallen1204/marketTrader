@@ -1,0 +1,21 @@
+#!/usr/bin/python3
+
+
+def getStatus():
+
+
+def main():
+    print('                      __           __ ___________                   ___\n' +
+    '  _____ _____ _______|  | __ _____/  |\__    ___/___________     __| _/___________\n' +
+    ' /     \\\\__  \\\\_  __ \\  |/ // __ \\   __\\|    |  \\_  __ \\__  \\   / __ |/ __ \\_  __ \\\n' +
+    '|  Y Y  \/ __ \|  | \/    <\  ___/|  |  |    |   |  | \// __ \_/ /_/ \  ___/|  | \/\n' +
+    '|__|_|  (____  /__|  |__|_ \\\\___  >__|  |____|   |__|  (____  /\____ |\___  >__|   \n' +
+    '      \/     \/           \/    \/                          \/      \/    \/       \n')
+    print("Version 1.01\n\n")
+    print("What's New:")
+    print("-Service Monitor: Allows you to verify all of the components are up and running without having to check them individually")
+    print("-Settings: Allows you to change server settings")
+
+
+if __name__ == "__main__":
+    main()
