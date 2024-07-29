@@ -2,7 +2,7 @@
 
 ## User Story #1: Give Status 
 ## User Story #2: Give Settings
-## User Story #3: Give Data
+## User Story #3: Get Help
 ## Quality Attribute #1: Accountability
 ## Quality Attribute #2: Modularity
 ## Quality Attribute #3: Autonomy
@@ -18,10 +18,19 @@
 ## IH#7 Provide Ways to Try Out Different Approaches
 ## IH#8 Encourage Tinkerers to Tinker Mindfully
 
+def settings():
+    pass
+
+def helpMenu():
+    print("Options:")
+    print("Status: Shows the current status of each application component")
+    print("Refresh Status: Refreshes the status of the component view to see if there is any change")
+    print("Settings: Section to change configuration settings for the application")
+
 def getStatus():
+    pass
 
-
-def main():
+def mainMenu():
     print('                      __           __ ___________                   ___\n' +
     '  _____ _____ _______|  | __ _____/  |\__    ___/___________     __| _/___________\n' +
     ' /     \\\\__  \\\\_  __ \\  |/ // __ \\   __\\|    |  \\_  __ \\__  \\   / __ |/ __ \\_  __ \\\n' +
@@ -30,9 +39,28 @@ def main():
     '      \/     \/           \/    \/                          \/      \/    \/       \n')
     print("Version 1.01\n\n")
     print("What's New:")
-    print("-Service Monitor: Allows you to verify all of the components are up and running without having to check them individually")
+    print("-Status: Allows you to verify all of the components are up and running without having to check them individually")
     print("-Settings: Allows you to change server settings")
-
+    print("")
+    print(getStatus())
+    print("")
+    print("Menu:")
+    print("1) Refresh Status")
+    print("2) Settings")
+    print("3) Help")
+    print("4) Exit")
+    entry = input()
+    while entry not in ('1','2','3','4'): 
+        print("Unknown Option. Please try again:")
+        entry = input()
+        if entry == '1':
+            getStatus()
+            continue
+        if entry == '2':
+            settings()
+def main():
+    while True:
+        mainMenu()
 
 if __name__ == "__main__":
     main()
