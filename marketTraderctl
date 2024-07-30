@@ -1,5 +1,18 @@
 #!/usr/bin/python3
-
+# For my user story, “As a user, I want to verify that all of the components of the trading bot are running, so that I can know that it's working”: Given the user has started the program, when they get to the main menu, then they see the operational status of the bot by default.
+# For my user story, “As a user, I want to be able to modify application settings via a UI, so that I can save time by not having to manually edit configuration files”: Given the , when, then
+# For my user story, “As a , I can, so that I can”: Given the , when, then
+# For IH#1: Here’s a description of the app’s features on the first screen. The description says why people would want to use the feature. For example: “The search feature will allow you to find other users in your location.
+# For IH#2: Here, it says that refreshing the application status could take up to a minute, communicating a cost.
+# For IH#3: Here, users can turn off the status page from showing up by default
+# For IH#4: The main menu has a logo and a list of options, which is a familiar layout to users with prior experience of command line programs
+# For IH#5: As I’m demonstrating, users can select “back” to go back to the main menu, a way to backtrack.
+# For IH#6: Here and here, users have a “next” button so it’s clear what to do next.
+# For IH#7: As I’m demo’ing, users can push “enter” to send their query or, in case that doesn’t work, they can push the “enter” button.
+# For IH#8: While in the Settings menu, when the user enters “q” while there are pending changes, they get an “are you sure? ” prompt to save them from making a mistake.
+# For my “Accountability” quality attribute: The non-functional requirement is: Software that is accountable for it's operability and report on this via the Status.
+# For my “maintainability” quality attribute: The non-functional requirement is: “Modularity”. The overall application is broken down into it's individual components, which can be managed individually.
+# For my “autonomy” quality attribute: “When the app is started and fully configured, it will not require human interaction and will be able to operate indipendantly.
 ## User Story #1: Give Status 
 ## User Story #2: Give Settings
 ## User Story #3: Get Help
@@ -31,6 +44,13 @@ def getStatus():
     pass
 
 def mainMenu():
+    print("Menu:")
+    print("1) Refresh Status")
+    print("2) Settings")
+    print("3) Help")
+    print("4) Exit")
+
+def main():
     print('                      __           __ ___________                   ___\n' +
     '  _____ _____ _______|  | __ _____/  |\__    ___/___________     __| _/___________\n' +
     ' /     \\\\__  \\\\_  __ \\  |/ // __ \\   __\\|    |  \\_  __ \\__  \\   / __ |/ __ \\_  __ \\\n' +
@@ -42,25 +62,22 @@ def mainMenu():
     print("-Status: Allows you to verify all of the components are up and running without having to check them individually")
     print("-Settings: Allows you to change server settings")
     print("")
-    print(getStatus())
-    print("")
-    print("Menu:")
-    print("1) Refresh Status")
-    print("2) Settings")
-    print("3) Help")
-    print("4) Exit")
-    entry = input()
-    while entry not in ('1','2','3','4'): 
-        print("Unknown Option. Please try again:")
-        entry = input()
-        if entry == '1':
-            getStatus()
-            continue
-        if entry == '2':
-            settings()
-def main():
     while True:
+        print(getStatus())
+        print("")
         mainMenu()
-
+        while entry:
+            entry = input()
+            if entry == '1':
+                getStatus()
+            elif entry == '2':
+                settings()
+            elif entry == '3':
+                helpMenu()
+            elif entry == '4':
+                quit()
+            else:
+                print("Unknown Option. Please try again:")
+                entry = input()
 if __name__ == "__main__":
     main()
