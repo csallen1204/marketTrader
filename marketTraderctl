@@ -1,47 +1,158 @@
 #!/usr/bin/python3
-# For my user story, “As a user, I want to verify that all of the components of the trading bot are running, so that I can know that it's working”: Given the user has started the program, when they get to the main menu, then they see the operational status of the bot by default.
-# For my user story, “As a user, I want to be able to modify application settings via a UI, so that I can save time by not having to manually edit configuration files”: Given the , when, then
-# For my user story, “As a , I can, so that I can”: Given the , when, then
-# For IH#1: Here’s a description of the app’s features on the first screen. The description says why people would want to use the feature. For example: “The search feature will allow you to find other users in your location.
-# For IH#2: Here, it says that refreshing the application status could take up to a minute, communicating a cost.
-# For IH#3: Here, users can turn off the status page from showing up by default
-# For IH#4: The main menu has a logo and a list of options, which is a familiar layout to users with prior experience of command line programs
-# For IH#5: As I’m demonstrating, users can select “back” to go back to the main menu, a way to backtrack.
-# For IH#6: Here and here, users have a “next” button so it’s clear what to do next.
+# DONE
+# For my user story, “As a user, I want to verify that all of the components of the trading bot are running, so that I can know that it's working”
+# Given the user has started the program, when they get to the main menu, then they see the operational status of the bot by default.
+
+# For my user story, “As a user, I want to be able to modify configuration settings via a UI, so that I can save time by not having to manually edit configuration files”: 
+# Given the user has a need to change configuration settings, when they select , then
+
+# For my user story, “As a user, I want to be able to get help in the menu settings, so that I can learn more about menu items I don't understand”: Given the , when, then
+
+#DONE
+# For IH#1: Explain (to Users) the Benefits of Using New and Existing Features:
+
+#Here’s a description of the app’s features on the first screen.
+
+#DONE
+# For IH#2: Explain (to Users) the Costs of Using New and Existing Features
+#Here, it says that refreshing the application status could take up to a minute, communicating a cost.
+
+#DONE
+# For IH#3: Let Users Gather as Much Information as They Want, and No More Than They Want
+#Created a toggle to turn off the default status
+#Created a help section for each menu and submenu, so that additional information is there if needed
+
+#DONE
+# For IH#4: Keep Familiar Features Available
+#The main menu has a logo and a list of options, which is a familiar layout to users with prior experience of command line programs
+
+#DONE
+# For IH#5: Make Undo/Redo and Backtracking Available
+#As I’m demonstrating, users can select “back” to go back to the main menu, a way to backtrack.
+
+#DONE
+# For IH#6: Provide an Explicit Path through the Task
+#Each task has the ability to proceed or return back to the previous menu
+
 # For IH#7: As I’m demo’ing, users can push “enter” to send their query or, in case that doesn’t work, they can push the “enter” button.
-# For IH#8: While in the Settings menu, when the user enters “q” while there are pending changes, they get an “are you sure? ” prompt to save them from making a mistake.
-# For my “Accountability” quality attribute: The non-functional requirement is: Software that is accountable for it's operability and report on this via the Status.
-# For my “maintainability” quality attribute: The non-functional requirement is: “Modularity”. The overall application is broken down into it's individual components, which can be managed individually.
-# For my “autonomy” quality attribute: “When the app is started and fully configured, it will not require human interaction and will be able to operate indipendantly.
-## User Story #1: Give Status 
-## User Story #2: Give Settings
-## User Story #3: Get Help
-## Quality Attribute #1: Accountability
-## Quality Attribute #2: Modularity
-## Quality Attribute #3: Autonomy
-## IH: TODOs
-## IH#1 (DONE)
-## IH#2 ability to assess whether a feature might require excessive time and effort so that 
-## Abi and Pat can avoid it or proceed with caution, and so Tim understands the relative 
-## amount of risk a feature comes with
-## IH#3 Include Help Feature on each option
-## IH#4 Keep Familiar Features Available
-## IH#5 Make Undo/Redo and Backtracking Available
-## IH#6 Provide an Explicit Path through the Task
 ## IH#7 Provide Ways to Try Out Different Approaches
+
+# For IH#8: While in the Settings menu, when the user enters “q” while there are pending changes, they get an “are you sure? ” prompt to save them from making a mistake.
 ## IH#8 Encourage Tinkerers to Tinker Mindfully
 
+## Quality Attribute #1: configurability
+## Quality Attribute #2: accountability
+## Quality Attribute #3:
+import json, socket
+
+with open('settings.json', 'r') as file:
+    settingsString = file.read()
+    global settingsJSON
+    settingsJSON = json.loads(settingsString)
+
+def subSettings(microservice):
+    print("")
+    print("Warning: Please be sure to verify and enter the address and port of the")
+    print("microservice carefully as entering incorrect information will cause it to")
+    print("be unavailable to the application until it is corrected")
+    print("")
+    print(f"{microservice} settings:")
+    print(f"1) Address (Current Value: {settingsJSON[microservice]['address']})")
+    print(f"2) Port (Current Value: {settingsJSON[microservice]['port']})")
+    print(f"3) Help")
+    print(f"4) Return to Settings Menu")
+    cmdInput = input()
+    keepLoopGoing = 0
+    while keepLoopGoing < 1:
+        if cmdInput == '1':
+            originalAddress = settingsJSON[microservice]['address']
+            print("Enter new address:")
+            newAddress = input()
+            print(f"Apply new Setting?")
+        elif cmdInput == '2':
+            pass
+        elif cmdInput == '3':
+            print("From this menu you can change the existing configuration settings")
+        elif cmdInput == '4':
+            break
+
+
 def settings():
-    pass
+    keepLoopGoing = 0
+    while keepLoopGoing < 1:
+        print('Settings:')
+        print("1) rabbitMQ")
+        print("2) mongoDB")
+        print("3) Disable/Enable Service Status at Startup")
+        print("4) Help")
+        print("5) Return to Main Menu")
+        settingsEntry = input()
+        if settingsEntry == '1':
+            subSettings('rabbitMQ')
+            continue
+        elif settingsEntry == '2':
+            subSettings('mongoDB')
+            continue
+        elif settingsEntry == '3':
+            if settingsJSON['refreshOnStartup'] == 0:
+                setting = 'OFF'
+            else:
+                setting = 'ON'
+            print(f"Current Setting: {setting}")
+            print("")
+            print("Change? Y/N")
+            response = input()
+            while response not in ('Y','N'):
+                print("Please type Y or N")
+                response = input()
+            if response == 'Y':
+                if settingsJSON['refreshOnStartup'] == 0:
+                    settingsJSON['refreshOnStartup'] = 1
+                else:
+                    settingsJSON['refreshOnStartup'] = 0
+                with open('settings.json', 'w') as file:
+                    json.dump(settingsJSON, file)
+            break
+        elif settingsEntry == '4':
+            print("")
+            print("Settings Options:")
+            print("1) Change configuration settings for RabbitMQ")
+            print("2) Change configuration settings for mongoDB")
+            print("3) Choose to enable/disable service status at startup")
+            print("4) Launch the help menu")
+            print("5) Return to the Main Menu")
+            print("")
+            continue
+        elif settingsEntry == '5':
+            keepLoopGoing += 1
+            break
+        print("Unknown option. Please Try Again")
+        print("")
+        
 
 def helpMenu():
     print("Options:")
     print("Status: Shows the current status of each application component")
     print("Refresh Status: Refreshes the status of the component view to see if there is any change")
     print("Settings: Section to change configuration settings for the application")
+    print("")
+    print("Press enter to continue")
+    input()
 
 def getStatus():
-    pass
+    print("")
+    print("Microservice Status:")
+    for key in settingsJSON.keys():
+        if key == 'refreshOnStartup':
+            continue
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        result = sock.connect_ex((settingsJSON[key]['address'],settingsJSON[key]['port']))
+        if result == 0:
+            print(f"{key}: ONLINE")
+        else:
+            print(f"{key}: OFFLINE")
+        
+    print("")
 
 def mainMenu():
     print("Menu:")
@@ -58,26 +169,35 @@ def main():
     '|__|_|  (____  /__|  |__|_ \\\\___  >__|  |____|   |__|  (____  /\____ |\___  >__|   \n' +
     '      \/     \/           \/    \/                          \/      \/    \/       \n')
     print("Version 1.01\n\n")
+    print("")
     print("What's New:")
     print("-Status: Allows you to verify all of the components are up and running without having to check them individually")
+    if settingsJSON['refreshOnStartup'] == 0:
+        print(" NOTE: Status feature is currently disabled to run at startup but this can be changed in the settings menu")
     print("-Settings: Allows you to change server settings")
     print("")
+    entry = None
+    if settingsJSON['refreshOnStartup'] == 1:
+        getStatus()
+        print("NOTE: Status refresh could take up to a minute to contact remote services")
+        print("You can disable this feature from running at startup in the Settings Menu")
     while True:
-        print(getStatus())
         print("")
         mainMenu()
+        entry = input()
         while entry:
-            entry = input()
             if entry == '1':
                 getStatus()
+                break
             elif entry == '2':
                 settings()
+                break
             elif entry == '3':
                 helpMenu()
+                break
             elif entry == '4':
                 quit()
-            else:
-                print("Unknown Option. Please try again:")
-                entry = input()
+            print("Unknown Option. Please try again:")
+            entry = input()
 if __name__ == "__main__":
     main()
